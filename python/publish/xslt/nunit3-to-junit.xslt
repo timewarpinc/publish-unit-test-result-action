@@ -116,7 +116,10 @@
   <xsl:template match="test-case/failure">
     <xsl:if test="parent::test-case[not(@result) or @result != 'Error']">
       <failure message="{./message}">
+        <xsl:value-of select="./message"/>
         <xsl:value-of select="./stack-trace"/>
+        
+        <xsl:value-of select="../output"/>
       </failure>
     </xsl:if>
     <xsl:if test="parent::test-case[@result='Error']">
