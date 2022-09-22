@@ -713,7 +713,7 @@ def get_case_messages(case_results: UnitTestCaseResults) -> CaseMessages:
     for key in case_results:
         for state in case_results[key]:
             for case in case_results[key][state]:
-                message = case.message if case.result in ['skipped', 'disabled'] else "\n".join([ case.message, case.content] )
+                message = case.message if case.result in ['skipped', 'disabled'] else "\n".join([i for i in [case.message, case.content] if i is not None] )
                 messages[key][state][message].append(case)
     return CaseMessages(messages)
 
