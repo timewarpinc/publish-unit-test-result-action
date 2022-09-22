@@ -312,6 +312,11 @@ class Publisher:
         error_annotations = get_error_annotations(stats.errors)
         case_annotations = get_case_annotations(cases, self._settings.report_individual_runs)
         file_list_annotations = self.get_test_list_annotations(cases)
+        logger.debug(f'file_list_annotations: {file_list_annotations}')
+        logger.debug(f'case_annotations: {case_annotations}')
+        logger.debug(f'error_annotations: {error_annotations}')
+
+
         all_annotations = error_annotations + case_annotations + file_list_annotations
 
         title = get_short_summary(stats)
@@ -330,7 +335,7 @@ class Publisher:
             )
 
             if check_run is None:
-                logger.debug(f'creating check with {len(annotations)} annotations')
+                logger.debug(f'creating check with {len(annotations)} annotations {output}')
                 check_run = self._repo.create_check_run(name=self._settings.check_name,
                                                         head_sha=self._settings.commit,
                                                         status='completed',
