@@ -306,6 +306,9 @@ class Publisher:
         stats_with_delta = get_stats_delta(stats, before_stats, 'earlier') if before_stats is not None else stats
         logger.debug(f'stats with delta: {stats_with_delta}')
 
+        logger.debug(f'stats: {stats}')
+        logger.debug(f'cases: {cases}')
+
         error_annotations = get_error_annotations(stats.errors)
         case_annotations = get_case_annotations(cases, self._settings.report_individual_runs)
         file_list_annotations = self.get_test_list_annotations(cases)
